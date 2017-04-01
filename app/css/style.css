@@ -1,0 +1,24 @@
+#game {
+	position: relative;
+	margin: 0 auto;
+	width: 800px;
+	margin-top:50px;
+	background: #141a21;
+}
+
+#grid {
+	width: 800px;
+	height: 400px;
+	float: left;
+	border: 1px solid #00f;
+  border-bottom: 0px;
+  border-right: 0px;
+}
+
+.field {
+	width: 39px;
+  height: 39px;
+  float: left;
+  border-right: 1px solid #00f;
+  border-bottom: 1px solid #00f;
+}

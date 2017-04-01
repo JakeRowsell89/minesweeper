@@ -1,5 +1,5 @@
-import Hello from '../app/components/hello'
+import Game from './components/Game'
 import React from 'react'
 import {render} from 'react-dom'
 
-render(<Hello />, document.getElementById('app'))
+render(<Game />, document.getElementById('app'))
