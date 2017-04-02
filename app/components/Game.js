@@ -1,5 +1,6 @@
 import React from 'react'
 import Grid from './Grid'
+import Popup from './Popup'
 import {createGrid, reveal, flag} from '../lib'
 
 export default class Game extends React.Component {
@@ -8,7 +9,7 @@ export default class Game extends React.Component {
     this.reveal = this.reveal.bind(this)
     this.flag = this.flag.bind(this)
     this.init = this.init.bind(this)
-    console.log(createGrid())
+
     this.state = {
       gameOver: false,
       grid: createGrid()
@@ -33,25 +34,11 @@ export default class Game extends React.Component {
     event.preventDefault()
   }
 
-  gameOverPopup () {
-    const message = this.state.win ? 'You win' : 'You lose doe..'
-    return (
-      <div className='overlay'>
-        <div className='popup'>
-          <h2>{message}</h2>
-          <button onClick={this.init}>restart</button>
-        </div>
-      </div>
-    )
-  }
-
   render () {
-    const popup = this.state.gameOver ? this.gameOverPopup() : ''
-    console.log(popup)
     return (
       <div id='game'>
         <Grid grid={this.state.grid} reveal={this.reveal} flag={this.flag} />
-        {popup}
+        <Popup gameOver={this.state.gameOver} won={this.state.win} restart={this.init} />
       </div>
     )
   }
