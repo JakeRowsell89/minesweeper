@@ -1,4 +1,4 @@
-import {getSurroundingIndices, gridHasBombAtIndex} from './util'
+import {getSurroundingIndices, gridHasBombAtIndex, checkAllBombsMarked} from './util'
 
 const revealAll = (grid) => grid.map(field => {
   field.revealed = true
@@ -21,11 +21,13 @@ const revealSurrounding = (grid, indices) => {
 
 const reveal = (grid, index) => {
   const fieldIsBomb = gridHasBombAtIndex(grid, index)
-  const newGrid = fieldIsBomb ? revealAll(grid) : grid.slice()
+  const newGridBase = fieldIsBomb ? revealAll(grid) : grid.slice()
+  const newGrid = revealSurrounding(newGridBase, [index])
 
   return {
     gameOver: fieldIsBomb,
-    grid: revealSurrounding(newGrid, [index])
+    grid: newGrid,
+    win: checkAllBombsMarked(newGrid)
   }
 }
 

@@ -43,7 +43,6 @@ const createBlankGrid = () => Array(200).fill(0)
 const createGrid = () => {
   const blankGrid = createBlankGrid()
   const bombGrid = addBombsToGrid(blankGrid, 15)
-  console.log(bombGrid)
   return addSurroundingNumbers(bombGrid)
 }
 

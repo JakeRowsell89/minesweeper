@@ -20,8 +20,14 @@ const getSurroundingIndices = (grid, index) => {
 
   return rawSurrounding.filter(isValidIndex)
 }
+const checkAllBombsMarked = (grid) => {
+  const bombs = grid.filter(f => f.type === 'bomb')
+  const bombsMarked = bombs.filter(f => f.flagged)
+  return bombs.length === bombsMarked.length
+}
 
 export {
+	checkAllBombsMarked,
 	getSurroundingIndices,
 	gridHasBombAtIndex
 }
