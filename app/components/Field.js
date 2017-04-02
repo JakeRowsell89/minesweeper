@@ -4,14 +4,27 @@ export default class Field extends React.Component {
   constructor () {
     super()
     // types: flag, number, bomb, questionmark
-    // concealed tue/flase
   }
 
+  hiddenField () {
+    return {
+      content: '',
+      fieldClass: 'field hidden'
+    }
+  }
+
+  revealedField () {
+    return {
+      content: this.props.type,
+      fieldClass: 'field ' + this.props.type
+    }
+  }
   render () {
+    const { content, fieldClass} = this.props.revealed ? this.revealedField() : this.hiddenField()
     return (
-  <div className='field'>
-    {this.props.content}
-  </div>
+      <div className={fieldClass} onClick={() => this.props.reveal(this.props.index)} onContextMenu={alert('erk')}>
+        {content}
+      </div>
     )
   }
 }
