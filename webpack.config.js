@@ -1,5 +1,13 @@
 const HtmlPlugin = require('html-webpack-plugin')
+const ExtractTextPlugin = require('extract-text-webpack-plugin')
+const UglifyJSPlugin = require('uglifyjs-webpack-plugin')
 const path = require('path')
+
+const extractLess = new ExtractTextPlugin({
+  filename: 'style.css',
+  disable: process.env.NODE_ENV === 'development',
+  allChunks: true
+})
 
 module.exports = {
   entry: './app',
@@ -7,25 +15,31 @@ module.exports = {
     filename: 'app.js',
     path: path.resolve(__dirname, 'dist')
   },
-  // Emit source maps so we can debug our code in the browser
   devtool: 'source-map',
-  // Tell webpack to run our source code through Babel
   module: {
-    loaders: [{
+    rules: [{
       test: /\.js$/,
       exclude: /node_modules/,
       loader: 'babel-loader'
+    },
+    {
+      test: /\.less$/,
+      exclude: [/node_modules/],
+      use: extractLess.extract({
+        use: [{
+          loader: 'css-loader'
+        }, {
+          loader: 'less-loader'
+        }],
+        fallback: 'style-loader'
+      })
     }]
   },
-  // Since Webpack only understands JavaScript, we need to
-  // add a plugin to tell it how to handle html files.
   plugins: [
-    // Configure HtmlPlugin to use our own index.html file
-    // as a template.
-    // Check out https://github.com/jantimon/html-webpack-plugin
-    // for the full list of options.
     new HtmlPlugin({
       template: 'app/index.html'
-    })
+    }),
+    extractLess,
+    new UglifyJSPlugin()
   ]
 }
