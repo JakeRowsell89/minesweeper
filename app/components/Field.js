@@ -14,14 +14,14 @@ export default class Field extends React.Component {
 
   revealedField () {
     return {
-      content: this.props.type,
+      content: this.props.type === 'bomb' ? '' : this.props.type,
       fieldClass: 'field ' + this.props.type
     }
   }
 
   flaggedField () {
     return {
-      content: 'flag',
+      content: '',
       fieldClass: 'field flag'
     }
   }

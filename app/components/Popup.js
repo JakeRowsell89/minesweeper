@@ -6,17 +6,17 @@ export default class Popup extends React.Component {
   }
 
   gameOverPopup (gameOver, won) {
-  	const message = won ? 'You win' : 'You lose doe..'
-  	const postFix = gameOver ? '' : 'hidden'
+    const message = won ? 'Awesome, you win!' : 'You lose. Sad.'
+    const postFix = gameOver ? '' : 'hidden'
 
-  	return {
-  		className: 'overlay ' + postFix,
-  		message
-  	}
+    return {
+      className: 'overlay ' + postFix,
+      message
+    }
   }
 
   render () {
-  	const {message, className} = this.gameOverPopup(this.props.gameOver, this.props.won)
+    const {message, className} = this.gameOverPopup(this.props.gameOver, this.props.won)
 
     return (
       <div className={className}>
