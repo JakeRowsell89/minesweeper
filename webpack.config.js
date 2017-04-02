@@ -1,5 +1,6 @@
 const HtmlPlugin = require('html-webpack-plugin')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
+const UglifyJSPlugin = require('uglifyjs-webpack-plugin')
 const path = require('path')
 
 const extractLess = new ExtractTextPlugin({
@@ -38,6 +39,7 @@ module.exports = {
     new HtmlPlugin({
       template: 'app/index.html'
     }),
-    extractLess
+    extractLess,
+    new UglifyJSPlugin()
   ]
 }
