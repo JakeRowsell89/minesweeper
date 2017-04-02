@@ -1,4 +1,4 @@
-const gridHasBombAtIndex = (grid, index) => grid[index] === null || grid[index] === 'bomb'
+const gridHasBombAtIndex = (grid, index) => grid[index] === null || grid[index] === 'bomb' || grid[index].type === 'bomb'
 const indexNotMatching = (index) => (i) => index !== i
 const indexExistsInArray = (array) => (index) => index >= 0 && index < array.length
 const getRowInGrid = (grid, width) => (index) => index < 0 ? null : (index - (index % width)) / width

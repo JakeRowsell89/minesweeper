@@ -20,11 +20,11 @@ const revealSurrounding = (grid, indices) => {
 }
 
 const reveal = (grid, index) => {
-  const field = grid[index]
-  const newGrid = gridHasBombAtIndex(grid, index) ? revealAll(grid) : grid.slice()
+  const fieldIsBomb = gridHasBombAtIndex(grid, index)
+  const newGrid = fieldIsBomb ? revealAll(grid) : grid.slice()
 
   return {
-    gameOver: field.type === 'bomb',
+    gameOver: fieldIsBomb,
     grid: revealSurrounding(newGrid, [index])
   }
 }

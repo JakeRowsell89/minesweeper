@@ -1,19 +1,20 @@
 body {
 	background: #141a21;
+	margin: 0px;
 }
 
 #game {
-	position: relative;
-	margin: 0 auto;
-	width: 802px;
-	margin-top:50px;
+	float: left;
+	width: 100%;
 }
 
 #grid {
 	width: 800px;
 	height: 400px;
-	float: left;
 	border: 1px solid #00f;
+	position: relative;
+	margin: 0 auto;
+	margin-top: 50px;
 }
 
 .field {
@@ -27,4 +28,35 @@ body {
 .field.hidden {
   background: #000;
   opacity: 0.3;
+}
+
+.overlay {
+	position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 1;
+  background: rgba(0, 0, 0, 0.55);
+}
+
+.popup {
+	position: relative;
+	margin: 0 auto;
+	margin-top: 50px;
+	background: #141a21;
+	border: 1px solid #00f;
+  text-align: center;
+  padding: 20px;
+  box-sizing: border-box;
+  width: 200px;
+}
+
+.popup button {
+  background: #141a21;
+	border: 1px solid #00f;
+	outline: none;
+	color: #00f;
+	line-height: 30px;
+	width: 100px;
 }
