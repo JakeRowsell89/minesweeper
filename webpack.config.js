@@ -3,9 +3,11 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const UglifyJSPlugin = require('uglifyjs-webpack-plugin')
 const path = require('path')
 
+const PRODUCTION = process.env.NODE_ENV === 'production'
+
 const extractLess = new ExtractTextPlugin({
   filename: 'style.css',
-  disable: process.env.NODE_ENV === 'development',
+  disable: PRODUCTION,
   allChunks: true
 })
 
@@ -40,6 +42,8 @@ module.exports = {
       template: 'app/index.html'
     }),
     extractLess,
-    new UglifyJSPlugin()
+    new UglifyJSPlugin({
+      compress: { warnings: !PRODUCTION }
+    })
   ]
 }
